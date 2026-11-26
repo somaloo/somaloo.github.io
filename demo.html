@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>show-me-clicker reviewer demo</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background: #1b1b1b; color: #eee; margin: 0; padding: 24px; }
+    main { max-width: 720px; margin: 0 auto; }
+    h1 { font-size: 1.4rem; }
+    .card {
+      background: #fff;
+      color: #222;
+      margin: 16px 0;
+      padding: 16px 20px 12px;
+      border-radius: 8px;
+    }
+    .card-footer { display: flex; justify-content: flex-end; }
+    a.show-me { color: #049fd9; font-weight: 600; }
+    a.show-me.used { color: #888; }
+    .media { margin-top: 12px; background: #e8e8e8; padding: 20px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>show-me-clicker reviewer demo</h1>
+    <p>
+      Install the extension, then click the toolbar icon once to open every
+      <strong>Show Me</strong> link. Click it again to restore the blue links
+      without refreshing this page.
+    </p>
+    <article class="card">
+      <p>Choose the Bootstrap tab.</p>
+      <div class="card-footer"><a class="show-me" href="#">Show Me</a></div>
+      <div class="media hidden">Opened demo panel 1</div>
+    </article>
+    <article class="card">
+      <p>Set the DHCP scope and click Save.</p>
+      <div class="card-footer"><a class="show-me" href="#">Show Me</a></div>
+      <div class="media hidden">Opened demo panel 2</div>
+    </article>
+    <article class="card">
+      <p>Review the fabric options and continue.</p>
+      <div class="card-footer"><a class="show-me" href="#">Show Me</a></div>
+      <div class="media hidden">Opened demo panel 3</div>
+    </article>
+  </main>
+  <script>
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a.show-me");
+      if (!link) {
+        return;
+      }
+      event.preventDefault();
+      link.classList.add("used");
+      const media = link.closest(".card").querySelector(".media");
+      media.classList.remove("hidden");
+    });
+  </script>
+</body>
+</html>
